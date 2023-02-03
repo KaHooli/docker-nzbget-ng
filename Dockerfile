@@ -17,11 +17,11 @@ RUN \
     openssl-dev && \
   echo "**** build nzbget ****" && \
   if [ -z ${NZBGET_RELEASE+x} ]; then \
-    NZBGET_RELEASE=$(curl -sX GET "https://api.github.com/repos/nzbget/nzbget/releases" \
+    NZBGET_RELEASE=$(curl -sX GET "https://api.github.com/repos/nzbget-ng/nzbget/releases" \
       | jq -r 'first(.[] | select(.prerelease == true)) | .tag_name'); \
   fi && \
   mkdir -p /app/nzbget && \
-  git clone https://github.com/nzbget/nzbget.git nzbget && \
+  git clone https://github.com/nzbget-ng/nzbget.git nzbget && \
   cd nzbget/ && \
   git checkout ${NZBGET_RELEASE} && \
   git cherry-pick -n fa57474d && \
